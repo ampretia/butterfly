@@ -36,10 +36,10 @@ import stat
 import socket
 import sys
 
-tornado.options.define("debug", default=False, help="Debug mode")
+tornado.options.define("debug", default=True, help="Debug mode")
 tornado.options.define("more", default=False,
                        help="Debug mode with more verbosity")
-tornado.options.define("unminified", default=False,
+tornado.options.define("unminified", default=True,
                        help="Use the unminified js (for development only)")
 
 tornado.options.define("host", default='localhost', help="Server host")

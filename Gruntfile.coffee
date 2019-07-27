@@ -65,4 +65,4 @@ module.exports = (grunt) ->
     'coffeelint', 'coffee', 'sass', 'watch']
   grunt.registerTask 'css', ['sass']
   grunt.registerTask 'default', [
-    'coffeelint', 'coffee', 'sass', 'uglify']
+    'coffeelint', 'coffee', 'sass']

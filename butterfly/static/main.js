@@ -16,14 +16,15 @@
   $ = document.querySelectorAll.bind(document);
 
   document.addEventListener('DOMContentLoaded', function() {
-    var close, ctl, error, init_ctl_ws, init_shell_ws, open, path, reopenOnClose, rootPath, term, write, write_request, wsUrl;
+    var bodyel, close, ctl, error, init_ctl_ws, init_shell_ws, open, path, reopenOnClose, rootPath, term, write, write_request, wsUrl;
     term = null;
     if (location.protocol === 'https:') {
       wsUrl = 'wss://';
     } else {
       wsUrl = 'ws://';
     }
-    rootPath = document.body.getAttribute('data-root-path');
+    bodyel = document.getElementById('butterfly');
+    rootPath = bodyel.getAttribute('data-root-path');
     rootPath = rootPath.replace(/^\/+|\/+$/g, '');
     if (rootPath.length) {
       rootPath = "/" + rootPath;
@@ -45,6 +46,7 @@
         return;
       }
       if (ws.shell.readyState === WebSocket.OPEN && ws.ctl.readyState === WebSocket.OPEN) {
+        bodyel = document.getElementById('butterfly');
         term = new Terminal(document.body, ws.shell.send.bind(ws.shell), ws.ctl.send.bind(ws.ctl));
         term.ws = ws;
         window.butterfly = term;
@@ -171,8 +173,8 @@
       this.out = out;
       this.ctl = ctl1 != null ? ctl1 : function() {};
       this.document = this.parent.ownerDocument;
-      this.html = this.document.getElementsByTagName('html')[0];
-      this.body = this.document.getElementsByTagName('body')[0];
+      this.html = this.document.getElementById('butterfly');
+      this.body = this.document.getElementById('terminal');
       this.term = this.document.getElementById('term');
       this.forceWidth = this.body.getAttribute('data-force-unicode-width') === 'yes';
       this.inputHelper = this.document.getElementById('input-helper');

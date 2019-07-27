@@ -14,23 +14,34 @@
     <link href="{{ static_url('main.css') }}" rel="stylesheet" id="style">
   </head>
 
-  <body spellcheck="false"
-        data-force-unicode-width="{{ 'yes' if options.force_unicode_width else 'no' }}"
-        data-root-path="{{ options.uri_root_path }}"
-        data-session-token={{ session }}>
-    <textarea id="input-helper">
-    </textarea>
-    <div id="input-view" class="hidden">
+<body>
+
+<div>
+<h1>Amy's terminal</h1>
+
+  <div id="butterfly" data-force-unicode-width="{{ 'yes' if options.force_unicode_width else 'no' }}"
+          data-root-path="{{ options.uri_root_path }}"
+          data-session-token={{ session }}>
+    <div id="terminal" spellcheck="false"
+          data-force-unicode-width="{{ 'yes' if options.force_unicode_width else 'no' }}"
+          data-root-path="{{ options.uri_root_path }}"
+          data-session-token={{ session }}>
+
+      <textarea id="input-helper">
+      </textarea>
+      <div id="input-view" class="hidden">
+      </div>
+      <div id="popup" class="hidden">
+      </div>
+      <script src="{{ static_url('html-sanitizer.js') }}"></script>
+      <script src="{{ static_url('main.%sjs' % (
+                  '' if options.unminified else 'min.')) }}"></script>
+      <script src="{{ static_url('ext.%sjs' % (
+                  '' if options.unminified else 'min.')) }}"></script>
+      <script src="{{ reverse_url('LocalJsStatic') }}"></script>
+      <div id="packed"></div>
+      <div id="term"></div>
     </div>
-    <div id="popup" class="hidden">
-    </div>
-    <script src="{{ static_url('html-sanitizer.js') }}"></script>
-    <script src="{{ static_url('main.%sjs' % (
-                 '' if options.unminified else 'min.')) }}"></script>
-    <script src="{{ static_url('ext.%sjs' % (
-                 '' if options.unminified else 'min.')) }}"></script>
-    <script src="{{ reverse_url('LocalJsStatic') }}"></script>
-    <div id="packed"></div>
-    <div id="term"></div>
+  <div id="butterfly">
   </body>
 </html>

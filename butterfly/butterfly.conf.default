@@ -10,7 +10,7 @@
 
 # Use unminified version of js for development
 #
-#unminified=False
+unminified=True
 
 # Server host
 # Use 'localhost' for local only

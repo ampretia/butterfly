@@ -64,8 +64,8 @@ class Terminal
   constructor: (@parent, @out, @ctl=->) ->
     # Global elements
     @document = @parent.ownerDocument
-    @html = @document.getElementsByTagName('html')[0]
-    @body = @document.getElementsByTagName('body')[0]
+    @html = @document.getElementById('butterfly')
+    @body = @document.getElementById('terminal')
     @term = @document.getElementById('term')
     @forceWidth = @body.getAttribute(
       'data-force-unicode-width') is 'yes'

@@ -33,7 +33,8 @@ document.addEventListener 'DOMContentLoaded', ->
   else
     wsUrl = 'ws://'
 
-  rootPath = document.body.getAttribute('data-root-path')
+  bodyel = document.getElementById('butterfly')
+  rootPath = bodyel.getAttribute('data-root-path')
   rootPath = rootPath.replace(/^\/+|\/+$/g, '')
   if rootPath.length
     rootPath = "/#{rootPath}"
@@ -59,7 +60,7 @@ document.addEventListener 'DOMContentLoaded', ->
 
     if (ws.shell.readyState is WebSocket.OPEN and
         ws.ctl.readyState is WebSocket.OPEN)
-
+      bodyel = document.getElementById('butterfly')
       term = new Terminal(
         document.body, ws.shell.send.bind(ws.shell), ws.ctl.send.bind(ws.ctl))
       term.ws = ws
